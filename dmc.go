@@ -1,11 +1,10 @@
 package dmc
 
 import (
+	"errors"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/get-ion/ion/core/errors"
 )
 
 // yy-mm-dd
@@ -98,7 +97,6 @@ func parseTime(str string) (time.Time, error) {
 	return time.Date(time.Now().Year(), time.Now().Month(), time.Now().Day(), h, m, s, 0, time.Local), nil
 }
 
-
 func DimensionalTransfer(s string) (time.Time, error) {
 	if strings.Contains(s, "-") || strings.Contains(s, "/") {
 		ts := strings.Split(s, "/")
@@ -124,7 +122,7 @@ func DimensionalTransfer(s string) (time.Time, error) {
 			return time.Time{}, err
 		}
 
-		return time.Now().Add(-1*d), nil
+		return time.Now().Add(-1 * d), nil
 	}
 	return time.Time{}, errors.New("parse error")
 }
